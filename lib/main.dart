@@ -1,8 +1,19 @@
+import 'package:ahmed_meditation_app/Screens/login_page.dart';
 import 'package:ahmed_meditation_app/Screens/player_screen.dart';
 import 'package:ahmed_meditation_app/Screens/meditation_screen.dart';
+import 'package:ahmed_meditation_app/Screens/register_page.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(const MyApp());
+import 'firebase_options.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -15,8 +26,10 @@ class MyApp extends StatelessWidget {
       routes: {
         MeditationScreen.id: (context) => const MeditationScreen(),
         PlayerScreen.id: (context) => const PlayerScreen(),
+        ResgisterPage.id: (context) => const ResgisterPage(),
+        LoginPage.id: (context) => const LoginPage(),
       },
-      initialRoute: MeditationScreen.id,
+      initialRoute: LoginPage.id,
     );
   }
 }
